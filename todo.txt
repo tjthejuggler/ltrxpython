@@ -1,0 +1,4 @@
+ball ip id input
+add a row button for more balls
+color wheel when button is clicked
+selected ball indicator

@@ -25,28 +25,51 @@ import time
 import tkinter as tk
     
 
-def write_slogan():
-    print("Tkinter is easy to use!")
+from tkinter import *
 
-root = tk.Tk()
-frame = tk.Frame(root)
-frame.pack()
+root = Tk()
 
-button = tk.Button(frame, 
-                   text="QUIT", 
-                   fg="red",
-                   command=quit)
-button.pack(side=tk.LEFT)
-slogan = tk.Button(frame,
-                   text="Hello",
-                   command=write_slogan)
-slogan.pack(side=tk.LEFT)
+text = [[None]*3 for _ in range(3)]
+buttons = [[None]*3]*3
+
+def action(i, j):
+	print(i,j)
+	text[i][j].set('Clicked')
+	xtext = [[None]*3 for _ in range(3)]
+	print([id(x) for x in xtext])
+
+for i in range(3):
+	for j in range(3):
+		text[i][j] = StringVar()
+		text[i][j].set('(%d, %d)' % (i,j))
+		buttons[i][j] = Button(root, command = lambda i=i, j=j : action(i, j))
+		buttons[i][j].config(textvariable = text[i][j], width = 9, height = 5)
+		buttons[i][j].grid(row = i, column = j)
 
 root.mainloop()
 
+# def write_slogan():
+#     print("Tkinter is easy to use!")
 
-udp_header = struct.pack("!bIBH", 66, 0, 0, 0)
-s = socket(AF_INET, SOCK_DGRAM)
+# root = tk.Tk()
+# frame = tk.Frame(root)
+# frame.pack()
+
+# button = tk.Button(frame, 
+#                    text="QUIT", 
+#                    fg="red",
+#                    command=quit)
+# button.pack(side=tk.LEFT)
+# slogan = tk.Button(frame,
+#                    text="Hello",
+#                    command=write_slogan)
+# slogan.pack(side=tk.LEFT)
+
+# root.mainloop()
+
+
+# udp_header = struct.pack("!bIBH", 66, 0, 0, 0)
+# s = socket(AF_INET, SOCK_DGRAM)
 
 
 
